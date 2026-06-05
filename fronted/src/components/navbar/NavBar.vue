@@ -5,7 +5,6 @@ import HomePageIcon from "@/components/navbar/icons/HomePageIcon.vue";
 import FriendIcon from "@/components/navbar/icons/FriendIcon.vue";
 import CreateIcon from "@/components/navbar/icons/CreateIcon.vue";
 import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
-import FriendIndex from "@/views/friend/FriendIndex.vue";
 </script>
 
 <template>
