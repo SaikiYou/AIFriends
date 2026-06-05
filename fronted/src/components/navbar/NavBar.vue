@@ -5,6 +5,7 @@ import HomePageIcon from "@/components/navbar/icons/HomePageIcon.vue";
 import FriendIcon from "@/components/navbar/icons/FriendIcon.vue";
 import CreateIcon from "@/components/navbar/icons/CreateIcon.vue";
 import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
+import FriendIndex from "@/views/friend/FriendIndex.vue";
 </script>
 
 <template>
@@ -30,7 +31,9 @@ import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
         </div>
         <!-- 登录 -->
         <div class="navbar-end">
-          <button class="btn btn-ghost">登录</button>
+          <RouterLink :to="{name: 'user-account-login-index'}" active-class="btn-active" class="btn btn-ghost">
+            登录
+          </RouterLink>
         </div>
       </nav>
       <slot></slot>
@@ -42,22 +45,22 @@ import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
 
           <!-- 菜单项 -->
           <li>
-            <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="首页">
+            <RouterLink :to="{name: 'homepage-index'}" active-class="menu-focus" class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="首页">
               <HomePageIcon />
               <span class="is-drawer-close:hidden test-base ml-2 whitespace-nowrap">首页</span>
-            </button>
+            </RouterLink>
           </li>
           <li>
-            <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="好友">
+            <RouterLink :to="{name: 'friend-index'}" active-class="menu-focus" class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="好友">
               <FriendIcon />
               <span class="is-drawer-close:hidden test-base ml-2 whitespace-nowrap">好友</span>
-            </button>
+            </RouterLink>
           </li>
           <li>
-            <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="创作">
+            <RouterLink :to="{name: 'create-index'}" active-class="menu-focus" class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3" data-tip="创作">
               <CreateIcon />
               <span class="is-drawer-close:hidden test-base ml-2 whitespace-nowrap">创作</span>
-            </button>
+            </RouterLink>
           </li>
 
         </ul>
