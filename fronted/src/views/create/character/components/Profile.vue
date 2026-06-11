@@ -1,7 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 
-const props = defineProps(['Profile'])
+const props = defineProps(['profile'])
 const myProfile = ref(props.profile)
 
 watch(() => props.profile, newVal =>{
