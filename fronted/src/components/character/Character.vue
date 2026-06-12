@@ -19,7 +19,6 @@ async function handleRemoveCharacter(){
       emit('remove',props.character.id)
     }
   }catch (err){
-    console.log(err)
   }
 }
 </script>

@@ -7,8 +7,25 @@ import CreateIcon from "@/components/navbar/icons/CreateIcon.vue";
 import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
 import {useUserStore} from "@/stores/user.js";
 import UserMenu from "@/components/navbar/UserMenu.vue";
+import {ref, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
 
 const user = useUserStore()
+const searrchQuery = ref('')
+const router = useRouter()
+const route = useRoute()
+
+watch(() =>route.query.q, newQ =>{
+  searrchQuery.value = newQ || ''
+})
+async function handleSearch(){
+  await router.push({
+    name: 'homepage-index',
+    query: {
+      q: searrchQuery.value.trim(),
+    }
+  })
+}
 </script>
 
 <template>
@@ -24,13 +41,13 @@ const user = useUserStore()
         </div>
         <!-- 搜索 -->
         <div class="navbar-center w-4/5 max-w-180 flex justify-center">
-          <div class="join w-4/5 flex justify-center" >
-            <input class="input join-item rounded-l-full w-4/5" placeholder="搜索你想要的模型" />
+          <form @submit.prevent="handleSearch" class="join w-4/5 flex justify-center" >
+            <input v-model="searrchQuery" class="input join-item rounded-l-full w-4/5" placeholder="搜索你想要的模型" />
             <button class="btn join-item rounded-r-full" gap-0>
               <SearchIcon />
               搜索
             </button>
-          </div>
+          </form>
         </div>
         <!-- 登录 -->
         <div class="navbar-end">

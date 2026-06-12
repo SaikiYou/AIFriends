@@ -37,7 +37,7 @@ async function loadMore(){
       newCharacters = data.characters
     }
   }catch (err){
-    console.error("加载角色失败:", err)
+
   }finally{
     isLoading.value = false
     if (newCharacters.length===0){
