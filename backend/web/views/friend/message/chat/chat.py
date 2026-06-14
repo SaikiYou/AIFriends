@@ -78,6 +78,7 @@ class MessageChatView(APIView):
             content_type='text/event-stream'
         )
         response['Cache-Control'] = 'no-cache'
+        response['X-Accel-Buffering'] = 'no'
         return response
 
     async def tts_sender(self, app, inputs, mq, ws ,task_id):
