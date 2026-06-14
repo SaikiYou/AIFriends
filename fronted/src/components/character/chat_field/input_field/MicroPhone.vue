@@ -57,12 +57,10 @@ const sendToBackend = async (arrayBuffer) => {
   try{
     const res = await api.post('/api/friend/message/asr/asr',formData)
     const data = res.data
-    console.log(data)
     if (data.result === 'success'){
       emit('send', null, data.text)
     }
   }catch (err){
-    console.error('发送音频到后端失败:', err);
   }
 };
 

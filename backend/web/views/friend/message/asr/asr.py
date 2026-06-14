@@ -52,6 +52,7 @@ class ASRView(APIView):
             elif event in ['task-finished',
                            'task-faild']:  # === else if event == 'task-finished' or event == 'task-faild'
                 break
+
         return text
 
     async def run_asr_tasks(self, pcm_data):
