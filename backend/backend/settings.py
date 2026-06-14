@@ -11,8 +11,17 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
 from dotenv import load_dotenv
+import mimetypes
+
+# 确保 .mjs/.wasm/.onnx 文件能被正确识别 MIME 类型
+mimetypes.add_type("application/javascript", ".mjs", True)
+mimetypes.add_type("application/wasm", ".wasm", True)
+mimetypes.add_type("application/octet-stream", ".onnx", True)
+# 同时写入 common_types，确保 guess_type 一定能找到
+mimetypes.common_types[".mjs"] = "application/javascript"
+mimetypes.common_types[".wasm"] = "application/wasm"
+mimetypes.common_types[".onnx"] = "application/octet-stream"
 
 load_dotenv()
 

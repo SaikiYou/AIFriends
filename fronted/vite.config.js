@@ -15,11 +15,20 @@ export default defineConfig({
   ],
   build: {
     outDir: path.resolve(__dirname, '../backend/static/frontend'), // 打包到 Django static
-    emptyOutDir: true,
+    emptyOutDir: false,
   },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    },
+  },
+  server: {
+    proxy: {
+      '/vad/': {
+        target: 'http://127.0.0.1:8000/static/frontend/vad/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/vad\//, ''),
+      },
     },
   },
 })
