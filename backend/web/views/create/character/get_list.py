@@ -31,7 +31,7 @@ class GetListCharacterView(APIView):
                         'photo' : author.photo.url,
                     }
                 })
-                return Response({
+            return Response({
                 'result' : 'success',
                 'user_profile' : {
                     'user_id' : user.id,

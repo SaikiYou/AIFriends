@@ -21,7 +21,10 @@ async function handleSend(){
   isProcessing = true
 
   const content = message.value.trim()
-  if (!content) return
+  if (!content) {
+    isProcessing = false
+    return
+  }
   message.value = ''
 
   emit('pushBackMessage',{role:'user', content: content, id:crypto.randomUUID()})

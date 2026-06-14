@@ -36,7 +36,9 @@ function handlePushBackMessage(msg){
 }
 
 function handleAddToLastMessage(delta){
-  history.value.at(-1).content += delta
+  const last = history.value[history.value.length - 1]
+  last.content += delta
+  history.value = [...history.value]
   chatHistoryRef.value.scrollToBottom()
 }
 
