@@ -1,8 +1,9 @@
 import os
+from pathlib import Path
 from typing import TypedDict, Annotated, Sequence
 
 from django.utils.timezone import now, localtime
-from langchain_classic.vectorstores import lancedb
+import lancedb
 from langchain_community.vectorstores import LanceDB
 from langchain_core.messages import BaseMessage
 from langchain_core.tools import tool
@@ -26,7 +27,7 @@ class ChatGraph:
         @tool
         def search_knowledge_base(query:str):
             '''当用户查询阿里云百炼知识库相关信息时调用此函数，参数为用户的查询内容，返回查询结果'''
-            db = lancedb.connect('./web/documents/lancedb_storage')
+            db = lancedb.connect(str(Path(__file__).resolve().parent.parent.parent.parent.parent / 'documents' / 'lancedb_storage'))
             embeddings = CustomEmbeddings()
             vector_db = LanceDB(
                 connection=db,
