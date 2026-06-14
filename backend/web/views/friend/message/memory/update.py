@@ -11,9 +11,8 @@ def create_system_message():
         prompt += sp.prompts
     return SystemMessage(prompt)
 
-def create_user_message():
-    from web.models import friend
-    prompt = f'【原始记忆】\n{friend.memory}\n'
+def create_user_message(friend):
+    prompt = f'【原始记忆】\n{friend.memory or ""} \n'
     prompt += f'【最近对话】\n'
     messages = list(Message.objects.filter(friend=friend).order_by('-id')[:10])
     messages.reverse()
@@ -29,7 +28,7 @@ def update_memory(friend):
     inputs = {
         'messages':[
             create_system_message(),
-            create_user_message()
+            create_user_message(friend)
         ]
     }
 
